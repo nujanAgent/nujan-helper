@@ -1,0 +1,2 @@
+# Vendored drops are checked against their SHA256SUMS byte for byte, so git never rewrites their line endings.
+third_party/** -text
