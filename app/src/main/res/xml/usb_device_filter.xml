@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The boards Android offers to NuJan Helper when one is plugged in: the USB-serial bridges UsbSerialChips names, and any
+     Espressif USB device. Ids are decimal, as Android reads them. -->
+<resources>
+    <!-- Silicon Labs CP210x, CP2105, CP2108 -->
+    <usb-device vendor-id="4292" product-id="60000" />
+    <usb-device vendor-id="4292" product-id="60016" />
+    <usb-device vendor-id="4292" product-id="60017" />
+    <!-- WCH CH340, CH34x, CH341, CH9102, CH343 -->
+    <usb-device vendor-id="6790" product-id="29987" />
+    <usb-device vendor-id="6790" product-id="29986" />
+    <usb-device vendor-id="6790" product-id="21795" />
+    <usb-device vendor-id="6790" product-id="21972" />
+    <usb-device vendor-id="6790" product-id="21971" />
+    <!-- FTDI FT232R, FT2232H, FT4232H, FT232H, FT-X -->
+    <usb-device vendor-id="1027" product-id="24577" />
+    <usb-device vendor-id="1027" product-id="24592" />
+    <usb-device vendor-id="1027" product-id="24593" />
+    <usb-device vendor-id="1027" product-id="24596" />
+    <usb-device vendor-id="1027" product-id="24597" />
+    <!-- Prolific PL2303, any product -->
+    <usb-device vendor-id="1659" />
+    <!-- Espressif's own USB, any product -->
+    <usb-device vendor-id="12346" />
+</resources>
