@@ -1,0 +1,9 @@
+[{"reason": 0, "name": "NORMAL"},
+ {"reason": 1, "name": "REVOKED"},
+ {"reason": 2, "name": "BLOCKED"},
+ {"reason": 3, "name": "PROVIDER_SHUTDOWN"},
+ {"reason": 4, "name": "STALLED"},
+ {"reason": 5, "name": "PROTOCOL_ERROR"},
+ {"reason": 6, "name": "IDLE"},
+ {"reason": 7, "name": "IDENTITY_CHANGED"},
+ {"reason": 8, "name": "EXPIRED"}]

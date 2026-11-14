@@ -1,0 +1,4 @@
+{"binding": 1, "spec": "0.1",
+ "grant": {"state": "none", "groups": {}},
+ "servers": [{"id": "main", "mcpEras": ["2025-06-18"]}],
+ "limits": {"channels": 8, "inFlight": 32, "opensPerMinute": 10, "maxLineBytes": 16777216}}

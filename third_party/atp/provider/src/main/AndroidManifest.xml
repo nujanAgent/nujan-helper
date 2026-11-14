@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- Merged into every app that uses the kit: the provider service hosts bind, the consent screen they start, and the
+     bridge between them. The app supplies only res/xml/atp_provider.xml, which replaces the placeholder here. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- The consent screen hides other apps' overlays while it shows (Android 12 and later). -->
+    <uses-permission android:name="android.permission.HIDE_OVERLAY_WINDOWS" />
+    <!-- A call in a group set to ask each time is asked about in a notification; without this permission (Android 13
+         and later), or with the app's notifications off, nobody can be asked and the call is refused. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application>
+        <!-- Exported with no permission: every call is checked against what the platform reports about the caller,
+             and a channel is served only to an app the person connected (SPEC.md 4, 6.1). -->
+        <service
+            android:name="com.nujan_agent.atp.provider.AtpProviderService"
+            android:exported="true"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="com.nujan_agent.atp.action.PROVIDER" />
+            </intent-filter>
+            <meta-data
+                android:name="com.nujan_agent.atp.provider"
+                android:resource="@xml/atp_provider" />
+        </service>
+
+        <!-- Started by a connecting app for a result (SPEC.md 5.1, 6.3), in its own process so the service's process
+             never shows UI. -->
+        <activity
+            android:name="com.nujan_agent.atp.provider.AtpConsentActivity"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:launchMode="standard"
+            android:process=":atp_consent"
+            android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+            <intent-filter>
+                <action android:name="com.nujan_agent.atp.action.CONNECT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- The person's screen for the apps connected to this one, and the only place a provider-ui group is turned on
+             (SPEC.md 6.4). Exported so a host can open it when the person asks to manage the connection; it applies the
+             consent screen's protections. An app may add its own ways in: a filter for
+             android.intent.action.APPLICATION_PREFERENCES (the system's app settings) or a launcher shortcut. -->
+        <activity
+            android:name="com.nujan_agent.atp.provider.AtpConnectionsActivity"
+            android:exported="true"
+            android:label="@string/atp_apps_title"
+            android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+            <intent-filter>
+                <action android:name="com.nujan_agent.atp.action.CONNECTED_APPS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- The question about one call to a tool in a group set to ask each time (SPEC.md 6.4), opened from its
+             notification. Not exported, and in a task of its own, so answering it returns to the app the person was in. -->
+        <activity
+            android:name="com.nujan_agent.atp.provider.AtpAskActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar" />
+
+        <!-- The consent screen's way into the main process; not exported, so only the app's own processes call it. -->
+        <provider
+            android:name="com.nujan_agent.atp.provider.AtpBridgeProvider"
+            android:authorities="${applicationId}.atp"
+            android:exported="false" />
+    </application>
+</manifest>

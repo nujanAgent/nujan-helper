@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NuJan Helper Hands</string>
+    <string name="summary">Lets apps you connect to NuJan Helper see the screen and act on it, at your own risk.</string>
+    <string name="description">This lets NuJan Helper read what is on your screen and tap, swipe and type in apps, for the apps you have connected to it and the AI models behind them. What is on screen goes to those apps. A model can make mistakes or be misled by what it reads. A coloured frame and a Stop button show whenever it is in use. Passwords are not read, and apps that hold money, passwords or sign-in codes are neither read nor used: this service turns itself off whenever one of them opens, and, once you let NuJan Helper turn it back on, whenever no app is using it. Use it at your own risk: the authors are not liable for anything that happens from it. It does nothing until an app you allowed asks, and this app has no internet access of its own.</string>
+</resources>

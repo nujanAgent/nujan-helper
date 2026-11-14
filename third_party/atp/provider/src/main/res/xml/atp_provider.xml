@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- The kit's placeholder, which every app using the kit replaces: the app puts its own res/xml/atp_provider.xml beside
+     its code, naming its servers, the class that lists its tools (entry), its groups, and its privacy policy and contact
+     (SPEC.md 5.2). This one has neither a privacy policy nor a contact, which hosts show the person before they connect,
+     so AtpProviderXml.problems reports it as unfit to ship. -->
+<atp-provider spec="1">
+    <server id="main" mcpEras="2025-06-18" />
+</atp-provider>

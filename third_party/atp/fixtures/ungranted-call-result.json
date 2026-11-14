@@ -1,0 +1,4 @@
+{"jsonrpc": "2.0", "id": 7, "result": {
+  "content": [{"type": "text", "text": "run_command needs Commands, which this app has not been given. Turn it on in Nujan Helper, Connected apps."}],
+  "isError": true,
+  "_meta": {"com.nujan-agent.atp/missingGroups": ["exec"]}}}

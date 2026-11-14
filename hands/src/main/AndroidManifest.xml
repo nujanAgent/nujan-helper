@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- No INTERNET: what this app reads goes only to NuJan Helper, signed with the same key. -->
+
+    <!-- Who may press Stop in the Helper from here: only what is signed with the Helper's key. Both apps declare it, so
+         either may be installed first. -->
+    <permission android:name="com.nujan.helper.permission.HANDS" android:protectionLevel="signature" />
+    <uses-permission android:name="com.nujan.helper.permission.HANDS" />
+
+    <queries>
+        <package android:name="com.nujan.helper" />
+    </queries>
+
+    <application
+        android:allowBackup="false"
+        android:label="@string/app_name"
+        android:icon="@android:drawable/ic_menu_compass">
+
+        <service
+            android:name=".HandsService"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data android:name="android.accessibilityservice" android:resource="@xml/accessibility" />
+        </service>
+
+        <!-- The Helper's way in. Only call() answers, and it checks the caller's signature itself, since a provider's
+             permission attribute does not cover call(). -->
+        <provider
+            android:name=".HandsProvider"
+            android:authorities="com.nujan.helper.hands.control"
+            android:exported="true" />
+    </application>
+</manifest>

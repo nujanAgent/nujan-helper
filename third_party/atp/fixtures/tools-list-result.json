@@ -1,0 +1,17 @@
+{"jsonrpc": "2.0", "id": 2, "result": {"tools": [
+  {"name": "echo", "description": "Returns its text.",
+   "inputSchema": {"type": "object", "properties": {"text": {"type": "string"}}, "required": ["text"]},
+   "annotations": {"readOnlyHint": true}},
+  {"name": "fs_read", "description": "Reads a file in this app's own folder.",
+   "inputSchema": {"type": "object", "properties": {"path": {"type": "string"}}, "required": ["path"]},
+   "annotations": {"readOnlyHint": true},
+   "_meta": {"com.nujan-agent.atp/group": "files"}},
+  {"name": "run_command", "description": "Runs a command in the Linux system.",
+   "inputSchema": {"type": "object", "properties": {"command": {"type": "string"}}, "required": ["command"]},
+   "annotations": {"destructiveHint": true, "openWorldHint": true},
+   "_meta": {"com.nujan-agent.atp/group": "exec"}},
+  {"name": "mcp_everything_echo", "description": "Echo from a server running inside the provider.",
+   "inputSchema": {"type": "object", "properties": {"message": {"type": "string"}}},
+   "_meta": {"com.nujan-agent.atp/group": "mcp", "com.nujan-agent.atp/origin": "everything",
+             "com.nujan-agent.atp/ephemeral": true}}
+]}}

@@ -1,0 +1,10 @@
+{"actionConnect": "com.nujan_agent.atp.action.CONNECT",
+ "extraNonce": "com.nujan_agent.atp.extra.NONCE",
+ "extraGroups": "com.nujan_agent.atp.extra.GROUPS",
+ "extraPurpose": "com.nujan_agent.atp.extra.PURPOSE",
+ "extraOutcome": "com.nujan_agent.atp.extra.OUTCOME",
+ "resultCode": 1,
+ "outcomes": ["granted", "denied", "identity_refused", "error"],
+ "purposeMaxChars": 120,
+ "nonceHexChars": 32,
+ "nonceTtlMs": 300000}

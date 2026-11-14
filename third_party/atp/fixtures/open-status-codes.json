@@ -1,0 +1,11 @@
+[{"status": 0, "name": "OK"},
+ {"status": 1, "name": "NOT_GRANTED"},
+ {"status": 2, "name": "BLOCKED"},
+ {"status": 3, "name": "UNKNOWN_SERVER"},
+ {"status": 4, "name": "TOO_MANY_CHANNELS"},
+ {"status": 5, "name": "UNSUPPORTED_VERSION"},
+ {"status": 6, "name": "NOT_READY"},
+ {"status": 7, "name": "TRANSPORT_UNAVAILABLE"},
+ {"status": 8, "name": "BAD_STREAM"},
+ {"status": 9, "name": "RATE_LIMITED"},
+ {"status": 10, "name": "IDENTITY_REFUSED"}]

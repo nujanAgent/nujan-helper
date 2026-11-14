@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<resources>
+    <!-- Shown above a consent screen while another app's window lies over it and its touches are ignored. -->
+    <string name="atp_screen_covered">Another app is showing something over this screen, so taps here are ignored. Close its bubble or floating window, then tap again.</string>
+    <string name="atp_connect_title">Connect an app</string>
+    <!-- 1: the app's name, 2: its package, 3: the start of its signing key's digest, 4: this app's name. -->
+    <string name="atp_connect_asks">%1$s (%2$s, key %3$s) asks to use %4$s.</string>
+    <string name="atp_connect_purpose">It says: %1$s</string>
+    <string name="atp_connect_can">It will be able to:</string>
+    <!-- Where the person turns a group on, named on the connect screen and in a refused call; an app overrides it to
+         name its own screen, such as "%1$s, Connected apps". 1: this app's name. -->
+    <string name="atp_grants_place">%1$s</string>
+    <!-- A group's or a tool's name inside one of these sentences, quoted so that a name worded as an action, such as
+         "Run any code", still reads as a name. 1: the name. -->
+    <string name="atp_quoted">“%1$s”</string>
+    <!-- 1: the groups' names, each quoted (atp_quoted), 2: where they are turned on (atp_grants_place). -->
+    <plurals name="atp_connect_stays_off">
+        <item quantity="one">%1$s stays off until you turn it on in %2$s.</item>
+        <item quantity="other">%1$s stay off until you turn them on in %2$s.</item>
+    </plurals>
+    <string name="atp_allow">Allow</string>
+    <string name="atp_deny">Deny</string>
+    <string name="atp_block">Block</string>
+
+    <!-- The connected-apps screen (AtpConnectionsActivity). -->
+    <string name="atp_apps_title">Connected apps</string>
+    <!-- 1: this app's name. -->
+    <string name="atp_apps_intro">Apps that use %1$s\'s tools. Choose what each app may do, have %1$s ask you each time, or disconnect it.</string>
+    <!-- 1: this app's name. -->
+    <string name="atp_apps_none">No app is connected. An app that wants %1$s\'s tools asks you first, on %1$s\'s own screen.</string>
+    <!-- 1: the app's package, 2: the start of its signing key's digest. -->
+    <string name="atp_apps_identity">%1$s, key %2$s</string>
+    <string name="atp_apps_connected_now">connected now</string>
+    <string name="atp_apps_not_connected_now">not connected now</string>
+    <string name="atp_apps_blocked">blocked</string>
+    <string name="atp_apps_disconnect">Disconnect</string>
+    <string name="atp_apps_unblock">Unblock</string>
+    <!-- 1: the group's name, quoted (atp_quoted), 2: the app's name. -->
+    <string name="atp_apps_confirm">Turn on %1$s for %2$s?</string>
+    <string name="atp_apps_turn_on">Turn on</string>
+    <string name="atp_apps_cancel">Cancel</string>
+    <!-- A group's three states for one app. -->
+    <string name="atp_apps_on">On</string>
+    <string name="atp_apps_ask">Ask each time</string>
+    <string name="atp_apps_off">Off</string>
+    <!-- Read out for one of a group's states. 1: the group's name, 2: the state (atp_apps_on, _ask or _off). -->
+    <string name="atp_apps_choice">%1$s: %2$s</string>
+
+    <!-- The question about one call to a tool in a group set to ask each time (AtpAskActivity). -->
+    <string name="atp_ask_channel">Questions from connected apps</string>
+    <!-- 1: the connected app's name, 2: the tool's title, quoted (atp_quoted). -->
+    <string name="atp_ask_notice_title">%1$s wants to use %2$s</string>
+    <string name="atp_ask_notice_text">Tap to answer.</string>
+    <!-- Sent to the connected app while its call waits on the question. 1: this app's name, 2: the tool's title,
+         quoted (atp_quoted). -->
+    <string name="atp_asking_progress">Waiting for you to answer %1$s about %2$s.</string>
+    <!-- 1: the connected app's name, 2: the tool's title, quoted (atp_quoted). -->
+    <string name="atp_ask_title">Let %1$s use %2$s?</string>
+    <!-- 1: the tool's title, 2: its group's name, each quoted (atp_quoted). -->
+    <string name="atp_ask_body">%1$s is in %2$s, which you set to ask each time.</string>
+    <string name="atp_ask_allow">Allow once</string>
+    <string name="atp_ask_deny">Don\'t allow</string>
+</resources>

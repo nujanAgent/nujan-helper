@@ -1,0 +1,6 @@
+{"IAtpProvider": {"descriptor": "com.nujan_agent.atp.v1.IAtpProvider",
+   "transactions": {"hello": 1, "openChannel": 2, "closeChannel": 3, "uiResult": 4, "releaseGrant": 5},
+   "oneway": ["closeChannel", "uiResult"]},
+ "IAtpHost": {"descriptor": "com.nujan_agent.atp.v1.IAtpHost",
+   "transactions": {"onUiRequest": 1, "onClosed": 2, "onServersChanged": 3},
+   "oneway": ["onUiRequest", "onClosed", "onServersChanged"]}}

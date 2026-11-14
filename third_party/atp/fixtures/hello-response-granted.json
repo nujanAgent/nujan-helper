@@ -1,0 +1,5 @@
+{"binding": 1, "spec": "0.1",
+ "grant": {"state": "granted", "groups": {"files": "on", "exec": "ask", "mcp": "off"}},
+ "servers": [{"id": "main", "mcpEras": ["2025-06-18"]}],
+ "limits": {"channels": 8, "inFlight": 32, "opensPerMinute": 10, "maxLineBytes": 16777216},
+ "nonce": "9f2c4e1a7b3d5f60a8c2e4d6f1b3a5c7", "nonceTtlMs": 300000}
