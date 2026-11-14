@@ -1,0 +1,23 @@
+# Gradle / Android build outputs
+.gradle/
+build/
+*/build/
+.cxx/
+local.properties
+
+# IDE
+.idea/
+*.iml
+.kotlin/
+
+# Signing / secrets — NEVER commit
+signing.properties
+keystore.properties
+*.keystore
+*.jks
+
+# Evidence from device runs (screenshots, logs) is never committed
+output/
+
+# Code graph (tools/graphify), rebuilt locally
+graphify-out/
