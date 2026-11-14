@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Resources ATP's provider kit reads, which lint cannot see from this module: the provider XML hosts and the kit read,
+     and the kit's strings the Helper words its own way. -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@xml/atp_provider,@string/atp_grants_place,@string/atp_connect_title,@string/atp_allow,@string/atp_deny,@string/atp_block" />

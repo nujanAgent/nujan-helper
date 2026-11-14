@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- INTERNET: proot children (apt, git, npm) use ordinary app sockets; no extra permission
+         beyond this. Apps reach the Helper over ATP, and it listens on no port: a USB board is
+         shared with its own toolbox over a private socket, only while usb_serial_open shares one. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- usb_serial_open: boards on the phone's USB port; the Helper works without a USB host. -->
+    <uses-feature android:name="android.hardware.usb.host" android:required="false" />
+    <!-- Foreground service to keep build/dev-server jobs alive when the app is minimized, and the
+         processor awake under them with the screen off. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- install_apk: lets the Helper hand a built APK to the system package installer; the
+         OS confirmation dialog is the final gate. Sideload/targetSdk 28 app. -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <!-- Who may press Stop from the Hands add-on: only what is signed with the Helper's key. Both apps declare it, so either
+         may be installed first. -->
+    <permission android:name="com.nujan.helper.permission.HANDS" android:protectionLevel="signature" />
+    <uses-permission android:name="com.nujan.helper.permission.HANDS" />
+    <!-- Lets the Helper turn the Hands add-on back on for a drive after it turned itself off, so it is on only while an app
+         drives the phone. Android gives it only when the person grants it over Wireless debugging, from Drive this phone. -->
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" tools:ignore="ProtectedPermissions" />
+
+    <application
+        android:name=".HelperApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.NujanHelper">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NujanHelper"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Keeps the runtime process alive while jobs and dev servers run. No foregroundServiceType
+             is declared: a type is required from targetSdk 34, and the app targets 28, so
+             startForeground(id, notification) is valid on-device. -->
+        <service
+            android:name=".runtime.RuntimeService"
+            android:exported="false" />
+
+        <!-- The ATP provider's service, screens and bridge come from the provider kit (third_party/atp/provider), which
+             merges them in; its consent and connected-apps screens wear the Helper's look. -->
+        <activity
+            android:name="com.nujan_agent.atp.provider.AtpConsentActivity"
+            android:theme="@style/Theme.NujanHelper.Kit"
+            tools:replace="android:theme" />
+        <activity
+            android:name="com.nujan_agent.atp.provider.AtpConnectionsActivity"
+            android:theme="@style/Theme.NujanHelper.Kit"
+            tools:replace="android:theme" />
+
+        <!-- Offered by Android when a board is plugged in; "Always open" keeps the Helper's grant for that board
+             across re-plugs and new device paths. No UI. -->
+        <activity
+            android:name=".usb.UsbAttachActivity"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/usb_device_filter" />
+        </activity>
+
+        <!-- A question to the person during a phone tool's call. Not exported: only a call of the Helper's own opens it. -->
+        <activity
+            android:name=".phone.PhoneAskActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.NujanHelper" />
+
+        <!-- Stop, and the pairing code, from their notifications. Not exported: only the Helper's own PendingIntents reach them. -->
+        <receiver android:name=".phone.PhoneStopReceiver" android:exported="false" />
+        <receiver android:name=".phone.PhonePairReceiver" android:exported="false" />
+        <receiver
+            android:name=".phone.HandsStopReceiver"
+            android:exported="true"
+            android:permission="com.nujan.helper.permission.HANDS">
+            <intent-filter>
+                <action android:name="com.nujan.helper.action.STOP" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Opens the share sheet for a workspace zip, brought up by a call through the app the person is looking at
+             (export_workspace_zip). No UI of its own; not exported. -->
+        <activity
+            android:name=".export.ShareExportActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.NoDisplay" />
+
+        <!-- FileProvider for export_workspace_zip: grants the app the person shares a workspace zip
+             with a temporary read on it in the app-private exports/ dir, which holds nothing else.
+             Not exported; access is per-URI grant only. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.apkprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/apk_provider_paths" />
+        </provider>
+
+        <!-- Android's answer for each install_apk session. In the manifest so it is delivered after the process that
+             asked has ended; not exported: only the Helper's own PendingIntent reaches it. The action also receives
+             answers addressed to the Helper's package rather than to this receiver. -->
+        <receiver
+            android:name=".install.InstallStatusReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.nujan.helper.INSTALL_STATUS" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

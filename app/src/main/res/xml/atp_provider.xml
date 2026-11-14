@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- What a host reads before it binds (third_party/atp/SPEC.md 5.2), and where the provider kit finds the Helper's
+     tools (entry). The privacy policy and contact are the Helper's repository pages, as HelperLinks names them. -->
+<atp-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    spec="1"
+    privacyPolicy="https://github.com/nujanAgent/nujan-helper/blob/main/PRIVACY.md"
+    contact="https://github.com/nujanAgent/nujan-helper/issues">
+    <server
+        id="main"
+        mcpEras="2025-06-18"
+        toolFamily="code files device"
+        entry="com.nujan.helper.atp.HelperToolSource"
+        android:title="@string/atp_server_title" />
+    <group
+        id="files"
+        risk="low"
+        kind="read write"
+        grant="in-flow"
+        android:title="@string/atp_group_files"
+        android:summary="@string/atp_group_files_summary" />
+    <group
+        id="exec"
+        risk="critical"
+        kind="exec egress"
+        grant="provider-ui"
+        android:title="@string/atp_group_exec"
+        android:summary="@string/atp_group_exec_summary" />
+    <group
+        id="mcp"
+        risk="critical"
+        kind="exec egress"
+        grant="provider-ui"
+        android:title="@string/atp_group_mcp"
+        android:summary="@string/atp_group_mcp_summary" />
+    <group
+        id="apk-install"
+        risk="high"
+        kind="install"
+        grant="provider-ui"
+        android:title="@string/atp_group_apk_install"
+        android:summary="@string/atp_group_apk_install_summary" />
+    <group
+        id="usb"
+        risk="high"
+        kind="device read write"
+        grant="provider-ui"
+        android:title="@string/atp_group_usb"
+        android:summary="@string/atp_group_usb_summary" />
+    <group
+        id="phone-see"
+        risk="high"
+        kind="device read"
+        grant="provider-ui"
+        android:title="@string/atp_group_phone_see"
+        android:summary="@string/atp_group_phone_see_summary" />
+    <group
+        id="phone-act"
+        risk="critical"
+        kind="device write"
+        grant="provider-ui"
+        android:title="@string/atp_group_phone_act"
+        android:summary="@string/atp_group_phone_act_summary" />
+    <group
+        id="phone-shell"
+        risk="critical"
+        kind="exec device install"
+        grant="provider-ui"
+        android:title="@string/atp_group_phone_shell"
+        android:summary="@string/atp_group_phone_shell_summary" />
+</atp-provider>

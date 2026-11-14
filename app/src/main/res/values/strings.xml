@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NuJan Helper</string>
+
+    <!-- What a connecting app shows of the Helper's ATP manifest (res/xml/atp_provider.xml). -->
+    <string name="atp_server_title">NuJan Helper</string>
+    <string name="atp_group_files">Files</string>
+    <string name="atp_group_files_summary">Read and write files in its workspaces on this phone</string>
+    <string name="atp_group_exec">Commands</string>
+    <string name="atp_group_exec_summary">Run programs in the Helper\'s Linux system, with network access</string>
+    <string name="atp_group_mcp">Servers</string>
+    <string name="atp_group_mcp_summary">Start MCP servers in the Helper and use their tools</string>
+    <string name="atp_group_apk_install">App installs</string>
+    <string name="atp_group_apk_install_summary">Ask Android to install an app it built</string>
+    <string name="atp_group_usb">USB devices</string>
+    <string name="atp_group_usb_summary">Use boards plugged into the phone\'s USB port, each once Android has asked you</string>
+    <string name="atp_group_phone_see">See this phone\'s screen</string>
+    <string name="atp_group_phone_see_summary">Read what is on screen and list the apps. Your messages, photos and accounts go to this app and its AI model when they are on screen</string>
+    <string name="atp_group_phone_act">Act on this phone as you</string>
+    <string name="atp_group_phone_act_summary">Open apps, tap, swipe and type in any app, as if you had done it. Apps that hold money or passwords ask you first</string>
+    <string name="atp_group_phone_shell">Android\'s shell</string>
+    <string name="atp_group_phone_shell_summary">Run any command a computer plugged in for USB debugging could: install and remove apps, change settings, read logs. A command can get around the Helper\'s questions, so allow this only if you trust the app and its model completely</string>
+
+    <!-- The provider kit's consent screen and refusals, in the Helper's words. -->
+    <string name="atp_grants_place">%1$s, Connected apps</string>
+    <string name="atp_connect_title">connect an app</string>
+    <string name="atp_allow">allow</string>
+    <string name="atp_deny">deny</string>
+    <string name="atp_block">block</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- FileProvider mapping for export_workspace_zip: exposes the app-private exports/ dir, which holds
+     only the workspace zips the share sheet hands on, through a temporary content:// read grant. -->
+<paths>
+    <files-path name="exports" path="exports/" />
+</paths>

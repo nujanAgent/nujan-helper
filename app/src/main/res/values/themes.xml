@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The platform theme under Compose, in the midnight colours of ui/HelperTheme.kt, so no frame shows another colour
+         before Compose draws. The navigation bar matches the bottom bar's card colour. -->
+    <style name="Theme.NujanHelper" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">#0B1222</item>
+        <item name="android:navigationBarColor">#131C33</item>
+        <item name="android:windowBackground">#0B1222</item>
+    </style>
+
+    <!-- The provider kit's consent and connected-apps screens, drawn with platform views, in the Helper's colours: light
+         text on midnight and the teal accent for choices and buttons. The text colour goes on the views' own style,
+         because a theme's colour loses to the platform's text appearance. -->
+    <style name="Theme.NujanHelper.Kit">
+        <item name="android:navigationBarColor">#0B1222</item>
+        <item name="android:colorAccent">#4FE0C0</item>
+        <item name="android:textViewStyle">@style/NujanHelper.KitText</item>
+        <item name="android:buttonStyle">@style/NujanHelper.KitButton</item>
+    </style>
+
+    <style name="NujanHelper.KitText" parent="android:Widget.Material.TextView">
+        <item name="android:textColor">#E6EAF4</item>
+    </style>
+
+    <!-- Teal while it can be pressed and dimmed while Allow waits to arm, from the colored button's own colour list. -->
+    <style name="NujanHelper.KitButton" parent="android:Widget.Material.Button.Borderless.Colored">
+        <item name="android:textAllCaps">false</item>
+    </style>
+</resources>
