@@ -26,6 +26,15 @@
          drives the phone. Android gives it only when the person grants it over Wireless debugging, from Drive this phone. -->
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" tools:ignore="ProtectedPermissions" />
 
+    <!-- Every app with a launcher icon is visible, so the Helper can name the money and password apps Hands keeps out of
+         and list the apps a drive may open. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
     <application
         android:name=".HelperApplication"
         android:allowBackup="false"
