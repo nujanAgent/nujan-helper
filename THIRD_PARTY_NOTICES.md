@@ -26,7 +26,7 @@ issue and they will be supplied for three years from that release.
 
 | Component | Version | Licence |
 | --- | --- | --- |
-| ATP wire module and provider kit, Copyright 2026 NuJan | drop `atp-v0.23` (`third_party/atp`) | Apache-2.0 ([text](LICENSES/Apache-2.0.txt)) |
+| ATP wire module and provider kit, Copyright 2026 NuJan | drop `atp-v0.24` (`third_party/atp`) | Apache-2.0 ([text](LICENSES/Apache-2.0.txt)) |
 | usb-serial-for-android | 3.11.0 (`third_party/usb-serial-for-android`) | MIT ([text](third_party/usb-serial-for-android/LICENSE.txt)) |
 | XZ for Java | 1.10 | 0BSD |
 | Kotlin standard library, kotlinx.coroutines, kotlinx.serialization | 2.4.0, 1.11.0, 1.11.0 | Apache-2.0 |
