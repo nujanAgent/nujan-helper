@@ -166,7 +166,9 @@ class PhoneTools(
         val changed = pm.getChangedPackages(moneySequence)
         money?.takeIf { changed == null }?.let { return it }
         val found = withContext(Dispatchers.IO) {
-            val byPackage = pm.getInstalledApplications(0).map { it.packageName }.filter { PhoneGuard.holdsMoneyOrPasswords(it, label = null) }
+            val byPackage = pm.getInstalledApplications(0)
+                .filter { PhoneGuard.holdsMoneyOrPasswords(it.packageName, pm.getApplicationLabel(it).toString()) }
+                .map { it.packageName }
             val byName = apps.orEmpty().filter { (name, pkg) -> PhoneGuard.holdsMoneyOrPasswords(pkg, name) }.map { it.second }
             (byPackage + byName).distinct()
         }
