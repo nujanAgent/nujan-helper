@@ -43,11 +43,12 @@ The first start sets up the Linux system, which downloads Debian (see [PRIVACY.m
 You need JDK 17 and the Android SDK (Android Studio installs both).
 
 ```
-./gradlew :app:assembleDebug
+./gradlew :app:assembleRelease
 ```
 
-The APK is in `app/build/outputs/apk/debug/`. The PRoot binaries the Helper runs are prebuilt from Termux's packages
-and kept in `native/proot/`; where they come from, with their checksums, is in
+The APK is in `app/build/outputs/apk/release/`. It is signed with the key that `keystore.properties` names, and is
+unsigned without one; [RELEASING.md](RELEASING.md) says how to make both. The PRoot binaries the Helper runs are
+prebuilt from Termux's packages and kept in `native/proot/`; where they come from, with their checksums, is in
 [`native/proot/PROVENANCE.md`](native/proot/PROVENANCE.md).
 
 ## Documents
